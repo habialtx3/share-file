@@ -8,7 +8,9 @@ const app = express();
 const PORT = 3000;
 
 // allow frontend (React)
-app.use(cors());
+app.use(cors({
+    origin : "*"
+}));
 app.use(express.json());
 
 // pastikan folder uploads ada
@@ -51,7 +53,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
     fileMap[code] = req.file.filename;
 
-    fs.writeFileSync(mapFile, JSON.stringify(fileMap,null,2))
+    fs.writeFileSync(mapFile, JSON.stringify(fileMap, null, 2))
 
     res.json({
         message: "Upload success",
@@ -90,6 +92,6 @@ app.get("/file/:code", (req, res) => {
     res.sendFile(path.join(uploadDir, filename));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
