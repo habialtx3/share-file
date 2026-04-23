@@ -1,50 +1,50 @@
-import { useState } from "react"
+// import { useState } from "react"
 import Home from "./pages/Home";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+// const BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function App() {
-  const [file, setFile] = useState<File | null>(null)
-  const [code, setCode] = useState('')
-  const [uploadedCode, setUploadedCode] = useState('')
-  const [loading, setLoading] = useState(false);
+  // const [file, setFile] = useState<File | null>(null)
+  // const [code, setCode] = useState('')
+  // const [uploadedCode, setUploadedCode] = useState('')
+  // const [loading, setLoading] = useState(false);
 
-  const handleUpload = async () => {
-    if (!file) return alert("Pilh file terlebih dahulu");
+  // const handleUpload = async () => {
+  //   if (!file) return alert("Pilh file terlebih dahulu");
 
-    const formData = new FormData();
-    formData.append('file', file)
+  //   const formData = new FormData();
+  //   formData.append('file', file)
 
-    setLoading(true)
+  //   setLoading(true)
 
-    try {
-      const res = await fetch(`${BASE_URL}/upload`, {
-        method: "POST",
-        body: formData,
-      })
+  //   try {
+  //     const res = await fetch(`${BASE_URL}/upload`, {
+  //       method: "POST",
+  //       body: formData,
+  //     })
 
-      const data = await res.json()
-      setUploadedCode(data.code)
+  //     const data = await res.json()
+  //     setUploadedCode(data.code)
 
-    } catch (error) {
-      console.log(error);
-      alert('Upload Gagal')
-    } finally {
-      setLoading(false)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error);
+  //     alert('Upload Gagal')
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
-  const handleDownload = () => {
-    if (!code) return alert("Masukkan kode");
-    window.open(`${BASE_URL}/download/${code}`, '_blank')
+  // const handleDownload = () => {
+  //   if (!code) return alert("Masukkan kode");
+  //   window.open(`${BASE_URL}/download/${code}`, '_blank')
 
-  }
+  // }
 
 
-  const handlePreview = () => {
-    if (!code) return alert("Masukkan kode");
-    window.open(`${BASE_URL}/file/${code}`)
-  }
+  // const handlePreview = () => {
+  //   if (!code) return alert("Masukkan kode");
+  //   window.open(`${BASE_URL}/file/${code}`)
+  // }
 
   return (
     // <div style={{ padding: 40, fontFamily: "sans-serif" }}>
