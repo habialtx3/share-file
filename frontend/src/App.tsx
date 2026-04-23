@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Home from "./pages/Home";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -46,31 +47,32 @@ export default function App() {
   }
 
   return (
-    <div style={{ padding: 40, fontFamily: "sans-serif" }}>
-      <h1>Simple file share</h1>
-      <div style={{ marginBottom: 30 }}>
-        <h2>Upload</h2>
-        <input type="file" onChange={(e) => setFile(e.target.files?.[0] || null)}></input>
-        <br />
-        <br />
-        <button onClick={handleUpload} disabled={loading}>{loading ? "Uploading ..." : 'Upload'}</button>
-        {
-          uploadedCode && (
-            <p>
-              Kode : <b>{uploadedCode}</b>
-            </p>
-          )
-        }
-        <div>
-          <p>Code</p>
-          <h2>Download / Preview</h2>
-          <input value={code} onChange={(e) => setCode(e.target.value)} placeholder="Masukkan code"></input>
-          <br />
-          <br />
-          <button onClick={handleDownload}>Download</button>
-          <button onClick={handlePreview} style={{ marginLeft: 10 }}>Preview</button>
-        </div>
-      </div>
-    </div>
+    // <div style={{ padding: 40, fontFamily: "sans-serif" }}>
+    //   <h1>Simple file share</h1>
+    //   <div style={{ marginBottom: 30 }}>
+    //     <h2>Upload</h2>
+    //     <input type="file" onChange={(e) => setFile(e.target.files?.[0] || null)}></input>
+    //     <br />
+    //     <br />
+    //     <button onClick={handleUpload} disabled={loading}>{loading ? "Uploading ..." : 'Upload'}</button>
+    //     {
+    //       uploadedCode && (
+    //         <p>
+    //           Kode : <b>{uploadedCode}</b>
+    //         </p>
+    //       )
+    //     }
+    //     <div>
+    //       <p>Code</p>
+    //       <h2>Download / Preview</h2>
+    //       <input value={code} onChange={(e) => setCode(e.target.value)} placeholder="Masukkan code"></input>
+    //       <br />
+    //       <br />
+    //       <button onClick={handleDownload}>Download</button>
+    //       <button onClick={handlePreview} style={{ marginLeft: 10 }}>Preview</button>
+    //     </div>
+    //   </div>
+    // </div>
+    <Home/>
   )
 }
