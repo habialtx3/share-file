@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = `http://${window.location.hostname}:3000`;
 
 
 export default function Home() {
@@ -42,6 +42,19 @@ export default function Home() {
         if (!code) return alert("Masukkan kode");
         window.open(`${BASE_URL}/download/${code}`, '_blank')
 
+    }
+
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault()
+
+        const droppedFile = e.dataTransfer.files[0];
+        if (droppedFile) {
+            setFile(droppedFile)
+        }
+    }
+
+    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault()
     }
 
 
@@ -88,14 +101,15 @@ export default function Home() {
                                 </label>
                                 <div className="flex gap-2">
                                     <div className="relative flex-1">
+
                                         <span
-                                            className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined !text-outline"
-                                            data-icon="key"
+                                            className="absolute left-5 top-1/2 -translate-y-1/4 material-symbols-outlined text-outline"
                                         >
                                             key
                                         </span>
+
                                         <input
-                                            className="w-full pl-10 pr-4 py-3 !bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-body-md"
+                                            className="w-full mx-2 pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
                                             value={code}
                                             onChange={(e) => setCode(e.target.value)}
                                             placeholder="Enter 6-digit code"
@@ -122,8 +136,10 @@ export default function Home() {
                                 {/* Background Glow */}
                                 <div className="absolute -inset-4 !bg-gradient-to-tr from-primary/20 to-cyan-400/20 blur-3xl rounded-full opacity-50" />
                                 <div className="relative glass-panel rounded-[2rem] p-8 shadow-2xl border border-white/50">
-                                    <div className="border-2 border-dashed border-primary/30 rounded-[1.5rem] p-12 flex flex-col items-center justify-center !text-center group hover:border-primary/60 transition-all cursor-pointer !bg-white/40">
-
+                                    <div className="border-2 border-dashed border-primary/30 rounded-[1.5rem] p-12 flex flex-col items-center justify-center !text-center group hover:border-primary/60 transition-all cursor-pointer !bg-white/40"
+                                        onDrop={handleDrop}
+                                        onDragOver={handleDragOver}
+                                    >
                                         <input
                                             type="file"
                                             multiple
